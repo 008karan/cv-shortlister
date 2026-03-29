@@ -101,10 +101,13 @@ Each CV is scored across four dimensions:
 
 | Dimension | Weight | What it measures |
 |---|---|---|
-| **Must-Have Skills** | 40% | Voice AI tools, real-time systems, backend stack, agentic AI, LLM orchestration |
-| **Experience Fit** | 25% | Years of experience, seniority match, domain relevance |
-| **Nice-to-Have Skills** | 20% | DevOps, ASR/TTS tools, LangChain, open-source work |
-| **Domain Relevance** | 15% | How directly the candidate's work maps to the target domain |
+| **Must-Have Skills** | 40% | Non-negotiable skills and tools extracted from your JD |
+| **Experience Fit** | 25% | Years of experience and seniority match for the role |
+| **Nice-to-Have Skills** | 20% | Bonus skills, strong-plus qualifications from your JD |
+| **Domain Relevance** | 15% | How directly the candidate's past work maps to your domain |
+
+> **These dimensions are role-agnostic.** What counts as a "must-have" or "nice-to-have"
+> is driven entirely by your `state/jd_criteria.json` — not hardcoded anywhere in the scripts.
 
 ```
 Weighted Total = (Must-Have × 0.40) + (Experience × 0.25)
@@ -115,9 +118,14 @@ Weighted Total = (Must-Have × 0.40) + (Experience × 0.25)
 
 | Flag | Criteria | Excel highlight |
 |---|---|---|
-| ✅ **Shortlisted** | Top 30% by score | 🟩 Green row |
-| 🔬 **Research** | Prestigious institute (IIT/IISc/CMU/Stanford…) + voice AI / ASR / TTS domain work → +2 bonus on Experience | 🟦 Teal row |
-| 🚩 **Red Flag** | Zero voice AI + zero real-time + zero LLMs + zero audio | 🟥 Red row |
+| ✅ **Shortlisted** | Top 30% by weighted score (configurable via `--cutoff` or `--top`) | 🟩 Green row |
+| 🔬 **Research** | Candidate has R&D / research background from a prestigious institute **and** the work is directly in your target domain → +2 bonus applied to Experience score | 🟦 Teal row |
+| 🚩 **Red Flag** | Candidate has zero overlap with your JD's core domain — none of the must-have skills, no relevant experience | 🟥 Red row |
+
+> **Example only** — flags are configured per run inside `state/jd_criteria.json`.
+> For a Backend role you might red-flag "no backend experience."
+> For a Data Science role you might red-flag "no Python or ML experience."
+> The criteria are yours to define.
 
 ---
 
@@ -149,8 +157,9 @@ The final Excel has two sheets:
 
 | Rank | Name | File | Total Score | Must-Have | Experience | Nice-to-Have | Domain | Shortlisted | Research | Red Flag | Summary |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| 1 | Jane Doe | jane.pdf | 7.55 | 8 | 7 | 7 | 8 | Yes | No | No | Building production voice AI telecaller… |
-| 2 | John Smith | john.pdf | 6.35 | 7 | 6 | 5 | 7 | Yes | No | No | Built Twilio+WebSocket voice assistant… |
+| 1 | Jane Doe | jane_doe.pdf | 7.55 | 8 | 7 | 7 | 8 | Yes | No | No | *(one-line highlight of the candidate's most relevant experience)* |
+| 2 | John Smith | john_smith.pdf | 6.35 | 7 | 6 | 5 | 7 | Yes | Yes | No | *(research bonus applied — strong domain R&D background)* |
+| 3 | Alex Brown | alex_brown.pdf | 2.10 | 2 | 3 | 1 | 1 | No | No | Yes | *(no overlap with JD requirements)* |
 
 **Sheet 2 — Red Flags** (isolated for quick review)
 
