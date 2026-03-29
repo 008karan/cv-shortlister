@@ -1,0 +1,35 @@
+# CV data — private, never commit
+resume/
+resumes/
+jd/
+
+# Generated outputs
+output/
+
+# Runtime state
+state/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+env/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Claude Code session data
+.claude/
+
+# Data security — block all candidate/result files regardless of location
+*.pdf
+*.docx
+*.doc
+*.xlsx
+*.xls
+*.csv
+*.txt
