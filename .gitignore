@@ -1,15 +1,40 @@
-# CV data — private, never commit
-resume/
-resumes/
-jd/
+# ── CV data — private, never commit ───────────────────────
+jd/*
+!jd/.gitkeep
 
-# Generated outputs
-output/
+resumes/*
+!resumes/.gitkeep
 
-# Runtime state
-state/
+resume/*
+!resume/.gitkeep
 
-# Python
+# ── Generated outputs ──────────────────────────────────────
+output/batches/extracted/*
+!output/batches/extracted/.gitkeep
+
+output/batches/scores/*
+!output/batches/scores/.gitkeep
+
+output/final/*
+!output/final/.gitkeep
+
+# ── Runtime state ──────────────────────────────────────────
+state/*
+!state/.gitkeep
+
+# ── Data security — block candidate/result file types ──────
+*.pdf
+*.docx
+*.doc
+*.xlsx
+*.xls
+*.csv
+*.txt
+
+# Always allow placeholders
+!**/.gitkeep
+
+# ── Python ─────────────────────────────────────────────────
 __pycache__/
 *.pyc
 *.pyo
@@ -18,18 +43,9 @@ __pycache__/
 venv/
 env/
 
-# OS
+# ── OS ─────────────────────────────────────────────────────
 .DS_Store
 Thumbs.db
 
-# Claude Code session data
+# ── Claude Code session data ───────────────────────────────
 .claude/
-
-# Data security — block all candidate/result files regardless of location
-*.pdf
-*.docx
-*.doc
-*.xlsx
-*.xls
-*.csv
-*.txt
